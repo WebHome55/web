@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组去重</title>
+  <script>
+
+  // 数组去重
+  function arrayUnique (arr) {
+
+    var newArr = []; // 定义一个空数组
+    var hash = {}; // 定义一个空对象
+
+    for (var i = 0, j = arr.length; i < j; i++) {
+      if(!hash[arr[i]])
+      {
+        newArr.push(arr[i]);
+        hash[arr[i]] = true;
+      }
+    }
+
+    return newArr;
+
+  }
+
+  // var arr = [1, 2, 8, 7, 12, '您好', '您好', '123', 6, 3, 28, 2, 7, 12, 0, , 2]
+  // console.log(arrayUnique(arr));
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
