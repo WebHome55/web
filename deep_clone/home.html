@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript对象深度克隆</title>
+  <script>
+    // 判断对象类型（Object | Array | function | String ...）
+    function getObjectType (obj) {
+
+      return Object.prototype.toString.call(obj).slice(8, -1);
+
+    }
+
+    // 深度克隆
+    function deepClone (obj) {
+
+      var result; // 克隆结果
+      var objectType = getObjectType(obj); // obj类型
+
+      // 确定result的类型
+      if (objectType === 'Object') {
+        result = {};
+      }
+      else if (objectType === 'Array') {
+        result = [];
+      }
+      else
+      {
+        return obj;
+      }
+
+      // 循环深复制
+      for ( var key in obj) {
+        var copyValue = obj[key];
+        if (getObjectType(copyValue) === 'Object') {
+          result[key] = arguments.callee(copyValue);
+        }
+        else if (getObjectType(copyValue) === 'Array') {
+          result[key] = arguments.callee(copyValue);
+        }
+        else
+        {
+          result[key] = obj[key];
+        }
+      }
+
+      return result;
+
+    }
+
+    var Person={
+          name: "张三",
+          age: 27,
+          address: {
+              province: "北京"
+          },
+          favorite:[
+              "swimming",
+              {reading: "JavaScript book"}
+          ],
+          skill:function(){
+              console.log("我是一个方法");
+          }
+      };
+
+    var NewPerson = deepClone(Person);
+    NewPerson.address.province = '上海';
+    console.log(Person.address.province); // 北京
+    console.log(NewPerson.address.province); // 上海
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
