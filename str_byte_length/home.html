@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>获取字符串字节长度</title>
+  <script>
+    function getStrByteLength (str) {
+      var strByteLen = 0;
+      if (str) {
+        for (var i=0; i<str.length; i++) {
+          if (str.charCodeAt(i) > 255) {
+            strByteLen += 2;
+          }
+          else
+          {
+            strByteLen++;
+          }
+        }
+        return strByteLen;
+      }
+    }
+
+    // var str = '我是JavaScript初学者';
+    // console.log(getStrByteLength(str));
+  </script>
+</head>
+<body>
+</body>
+</html>
